@@ -1,10 +1,10 @@
 from cv_utils import extract_boxed_image, write_text, save_image, draw_box
 
 helmet_color = [60, 0.7, 0.6] # hsv
-green_helmet_color = [131, 0.4, 0.4] # hsv
+green_helmet_color = [131, 0.3, 0.4] # hsv
 
 def detect_helmets_task(image, box_list):
-    helmets = list(map(lambda b: has_helmet(image, b), box_list))
+    helmets = detect_helmets(image, box_list)
     with_helmets = helmets.count(True)
     without_helmets = len(helmets) - with_helmets
 
@@ -17,6 +17,11 @@ def detect_helmets_task(image, box_list):
     
     output = write_text(image, str(with_helmets) + "/" + str(without_helmets))
     save_image("output_helmet_detection.jpg", output)
+
+def detect_helmets(image, box_list):
+    helmets = list(map(lambda b: has_helmet(image, b), box_list))
+    
+    return helmets
 
 def has_helmet(image, box):
     dist = slide(upper_third(extract_boxed_image(image, box)))

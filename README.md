@@ -14,6 +14,14 @@ pip install -r requirements.txt
 
 ### Запуск:
 
+Анализ изображения(файл input.jpeg):
+
 ```sh
 python detect.py
+```
+
+Анализ видео (файл video-tracking.mp4):
+
+```sh
+python tracking.py
 ```
